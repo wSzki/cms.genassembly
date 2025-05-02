@@ -9,29 +9,65 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import AboutPage from './globals/About'
+import PressPageGlobal from './globals/Press'
+import Contact from './globals/Contact'
+import FeaturedIn from './collections/FeaturedIn'
+import Press from './collections/Press'
+import Projects from './collections/Projects'
+import ProjectsPage from './globals/Projects'
+import Landing from './globals/Landing'
+import Logo from './components/Logo'
+import Icon from './components/Icon'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
-  admin: {
-    user: Users.slug,
-    importMap: {
-      baseDir: path.resolve(dirname),
+    admin: {
+        user: Users.slug,
+        importMap: {
+            baseDir: path.resolve(dirname),
+        },
+        meta: {
+            titleSuffix: 'General Assembly',
+            // icons: [
+            //     {
+            //         rel: 'icon',
+            //         type: 'image/svg+xml',
+            //         url: 'https://images.ctfassets.net/e33gel9cusb6/28H2J4mMy0mB4hrFs74DsQ/98516e00a22c2944c7811228a1c3f2e9/largeIcon.jpg',
+            //     },
+            //     {
+            //         rel: 'apple-touch-icon',
+            //         type: 'image/png',
+            //         url: 'https://images.ctfassets.net/e33gel9cusb6/28H2J4mMy0mB4hrFs74DsQ/98516e00a22c2944c7811228a1c3f2e9/largeIcon.jpg',
+            //     },
+            // ],
+        },
+        // Add custom graphics components
+        components: {
+            // beforeLogin: ['/components/Icon'],
+            beforeDashboard: ['/components/Logo'],
+            graphics: {
+                Logo: '/components/Logo',
+                Icon: '/components/Icon',
+            },
+        },
     },
-  },
-  collections: [Users, Media],
-  editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || '',
-  typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
-  },
-  db: mongooseAdapter({
-    url: process.env.DATABASE_URI || '',
-  }),
-  sharp,
-  plugins: [
-    payloadCloudPlugin(),
-    // storage-adapter-placeholder
-  ],
+    collections: [Users, Media, FeaturedIn, Press, Projects],
+    globals: [AboutPage, Contact, PressPageGlobal, ProjectsPage, Landing],
+
+    editor: lexicalEditor(),
+    secret: process.env.PAYLOAD_SECRET || '',
+    typescript: {
+        outputFile: path.resolve(dirname, 'payload-types.ts'),
+    },
+    db: mongooseAdapter({
+        url: process.env.DATABASE_URI || '',
+    }),
+    sharp,
+    plugins: [
+        payloadCloudPlugin(),
+        // storage-adapter-placeholder
+    ],
 })
