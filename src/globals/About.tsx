@@ -34,6 +34,38 @@ const AboutGlobal: GlobalConfig = {
             //         }
             //     ]
             // },
+                        {
+                type : 'group',
+                name : 'contactInformation',
+                fields : [
+                        {
+      name: 'address',
+      type: 'richText',
+    },
+    {
+      name: 'email',
+      type: 'text',
+      label: 'Email',
+    },
+    {
+      name: 'phoneNumber',
+      type: 'text', // Using text instead of number to handle formatting characters
+      label: 'Phone Number',
+    },
+    {
+      name: 'linkedin',
+      type: 'text',
+      label: 'LinkedIn',
+    },
+    {
+      name: 'instagram',
+      type: 'text',
+      label: 'Instagram',
+    },
+
+                ]
+            },
+
             {
                 type : 'group',
                 name : 'aboutGeneralAssembly',

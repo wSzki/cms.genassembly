@@ -450,6 +450,27 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface About {
   id: string;
+  contactInformation?: {
+    address?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    email?: string | null;
+    phoneNumber?: string | null;
+    linkedin?: string | null;
+    instagram?: string | null;
+  };
   aboutGeneralAssembly: {
     image: string | Media;
     aboutGeneralAssembly?: {
@@ -564,6 +585,15 @@ export interface Landing {
  * via the `definition` "about_select".
  */
 export interface AboutSelect<T extends boolean = true> {
+  contactInformation?:
+    | T
+    | {
+        address?: T;
+        email?: T;
+        phoneNumber?: T;
+        linkedin?: T;
+        instagram?: T;
+      };
   aboutGeneralAssembly?:
     | T
     | {
