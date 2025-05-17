@@ -468,9 +468,9 @@ export interface About {
       [k: string]: unknown;
     } | null;
   };
-  aboutColinAndSarah: {
+  aboutSsaragAndColin: {
     image: string | Media;
-    aboutColinStief?: {
+    aboutSarahZames?: {
       root: {
         type: string;
         children: {
@@ -485,7 +485,7 @@ export interface About {
       };
       [k: string]: unknown;
     } | null;
-    aboutSarahZames?: {
+    aboutColinStief?: {
       root: {
         type: string;
         children: {
@@ -570,12 +570,12 @@ export interface AboutSelect<T extends boolean = true> {
         image?: T;
         aboutGeneralAssembly?: T;
       };
-  aboutColinAndSarah?:
+  aboutSsaragAndColin?:
     | T
     | {
         image?: T;
-        aboutColinStief?: T;
         aboutSarahZames?: T;
+        aboutColinStief?: T;
       };
   updatedAt?: T;
   createdAt?: T;

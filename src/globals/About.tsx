@@ -53,7 +53,7 @@ const AboutGlobal: GlobalConfig = {
             },
             {
                 type : 'group',
-                name : 'aboutColinAndSarah',
+                name : 'aboutSsaragAndColin',
                 fields : [
                     {
                         name: 'image',
@@ -62,14 +62,14 @@ const AboutGlobal: GlobalConfig = {
                         required: true,
                     },
                     {
-                        name: 'aboutColinStief',
-                        type: 'richText',
-                        label: 'About Colin Stief',
-                    },
-                    {
                         name :'aboutSarahZames',
                         type: 'richText',
                         label: 'About Sarah Zames',
+                    },
+                    {
+                        name: 'aboutColinStief',
+                        type: 'richText',
+                        label: 'About Colin Stief',
                     },
                 ],
             },
