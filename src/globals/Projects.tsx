@@ -3,31 +3,34 @@
 import { GlobalConfig } from 'payload';
 
 const ProjectsOrderGlobal: GlobalConfig = {
-  slug: 'projects-order',
-  access: {
-    read: () => true,
-  },
-  admin: {
-    group: 'Global Content',
-  },
-  fields: [
-    {
-      name: 'projectsOrderTitle',
-      type: 'text',
-      label: 'Projects Order Title',
-      required: true,
+    slug: 'projects-order',
+    access: {
+        read: () => true,
     },
-    {
-      name: 'projects',
-      type: 'relationship',
-      label: 'Projects',
-      relationTo: 'projects',
-      hasMany: true,
-      admin: {
-        description: 'Select and arrange projects in the order you want them to appear on the page.'
-      }
-    },
-  ],
+        admin: {
+            group: 'Global Content',
+        },
+        fields: [
+            {
+                type:'array',
+                name: 'projectsArray',
+                label: "Projects",
+                required: true,
+                admin:{description: 'Select and arrange projects in the order you want them to appear on the page.'},
+                fields: [
+                    {
+                        name: 'projectItem',
+                        type: 'relationship',
+                        label: 'Projects',
+                        relationTo: 'projects',
+                        admin: {
+                            description: 'Select and arrange projects in the order you want them to appear on the page.'
+                        }
+                    },
+                ]
+            },
+
+        ],
 };
 
 export default ProjectsOrderGlobal;

@@ -15,6 +15,7 @@ import Contact from './globals/Contact'
 import FeaturedIn from './collections/FeaturedIn'
 import Press from './collections/Press'
 import Projects from './collections/Projects'
+import AllProjects from './globals/AllProjects'
 import ProjectsPage from './globals/Projects'
 import Landing from './globals/Landing'
 import { s3Storage } from '@payloadcms/storage-s3'
@@ -55,8 +56,19 @@ export default buildConfig({
             },
         },
     },
-    collections: [Users, Media, FeaturedIn, Press, Projects],
-    globals: [AboutPage, Contact, PressPageGlobal, ProjectsPage, Landing],
+    collections: [
+        Projects,
+        Press,
+        Media,
+        Users,
+    ],
+    globals: [
+        Landing,
+        AllProjects,
+        // Contact,
+        PressPageGlobal,
+        AboutPage,
+    ],
 
     editor: lexicalEditor({features:[]}),
     secret: process.env.PAYLOAD_SECRET || '',

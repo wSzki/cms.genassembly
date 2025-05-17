@@ -67,22 +67,20 @@ export interface Config {
   };
   blocks: {};
   collections: {
-    users: User;
-    media: Media;
-    'featured-in': FeaturedIn;
-    press: Press;
     projects: Project;
+    press: Press;
+    media: Media;
+    users: User;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
   collectionsJoins: {};
   collectionsSelect: {
-    users: UsersSelect<false> | UsersSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
-    'featured-in': FeaturedInSelect<false> | FeaturedInSelect<true>;
-    press: PressSelect<false> | PressSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    press: PressSelect<false> | PressSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -91,18 +89,16 @@ export interface Config {
     defaultIDType: string;
   };
   globals: {
-    about: About;
-    contact: Contact;
+    highlightedProjects: HighlightedProject;
+    allProjects: AllProject;
     'press-page': PressPage;
-    'projects-order': ProjectsOrder;
-    landing: Landing;
+    about: About;
   };
   globalsSelect: {
-    about: AboutSelect<false> | AboutSelect<true>;
-    contact: ContactSelect<false> | ContactSelect<true>;
+    highlightedProjects: HighlightedProjectsSelect<false> | HighlightedProjectsSelect<true>;
+    allProjects: AllProjectsSelect<false> | AllProjectsSelect<true>;
     'press-page': PressPageSelect<false> | PressPageSelect<true>;
-    'projects-order': ProjectsOrderSelect<false> | ProjectsOrderSelect<true>;
-    landing: LandingSelect<false> | LandingSelect<true>;
+    about: AboutSelect<false> | AboutSelect<true>;
   };
   locale: null;
   user: User & {
@@ -130,66 +126,6 @@ export interface UserAuthOperations {
     email: string;
     password: string;
   };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: string;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: string;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "featured-in".
- */
-export interface FeaturedIn {
-  id: string;
-  text: string;
-  url?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "press".
- */
-export interface Press {
-  id: string;
-  image?: (string | null) | Media;
-  mainText?: string | null;
-  subtext?: string | null;
-  url?: string | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -249,30 +185,75 @@ export interface Project {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: string;
+  alt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "press".
+ */
+export interface Press {
+  id: string;
+  image?: (string | null) | Media;
+  mainText?: string | null;
+  subtext?: string | null;
+  url?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: string;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: 'users';
-        value: string | User;
-      } | null)
-    | ({
-        relationTo: 'media';
-        value: string | Media;
-      } | null)
-    | ({
-        relationTo: 'featured-in';
-        value: string | FeaturedIn;
+        relationTo: 'projects';
+        value: string | Project;
       } | null)
     | ({
         relationTo: 'press';
         value: string | Press;
       } | null)
     | ({
-        relationTo: 'projects';
-        value: string | Project;
+        relationTo: 'media';
+        value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: string | User;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -318,61 +299,6 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users_select".
- */
-export interface UsersSelect<T extends boolean = true> {
-  updatedAt?: T;
-  createdAt?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media_select".
- */
-export interface MediaSelect<T extends boolean = true> {
-  alt?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "featured-in_select".
- */
-export interface FeaturedInSelect<T extends boolean = true> {
-  text?: T;
-  url?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "press_select".
- */
-export interface PressSelect<T extends boolean = true> {
-  image?: T;
-  mainText?: T;
-  subtext?: T;
-  url?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "projects_select".
  */
 export interface ProjectsSelect<T extends boolean = true> {
@@ -414,6 +340,51 @@ export interface ProjectsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "press_select".
+ */
+export interface PressSelect<T extends boolean = true> {
+  image?: T;
+  mainText?: T;
+  subtext?: T;
+  url?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
@@ -443,6 +414,54 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "highlightedProjects".
+ */
+export interface HighlightedProject {
+  id: string;
+  /**
+   * Select and arrange highlighted projects in the order you want them to appear on the landing page.
+   */
+  projectsArray: {
+    projectItem?: (string | null) | Project;
+    id?: string | null;
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "allProjects".
+ */
+export interface AllProject {
+  id: string;
+  /**
+   * Select and arrange projects in the order you want them to appear on the website.
+   */
+  projectsArray: {
+    projectItem?: (string | null) | Project;
+    id?: string | null;
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "press-page".
+ */
+export interface PressPage {
+  id: string;
+  /**
+   * Select and arrange press articles in the order you want them to appear on the press page.
+   */
+  pressArray: {
+    pressItem?: (string | null) | Press;
+    id?: string | null;
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -527,58 +546,48 @@ export interface About {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contact".
+ * via the `definition` "highlightedProjects_select".
  */
-export interface Contact {
-  id: string;
-  addressLine1: string;
-  addressLine2?: string | null;
-  addressLine3?: string | null;
-  email?: string | null;
-  phoneNumber?: string | null;
-  linkedin?: string | null;
-  instagram?: string | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
+export interface HighlightedProjectsSelect<T extends boolean = true> {
+  projectsArray?:
+    | T
+    | {
+        projectItem?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "press-page".
+ * via the `definition` "allProjects_select".
  */
-export interface PressPage {
-  id: string;
-  pageTitle: string;
-  pressArticles?: (string | Press)[] | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
+export interface AllProjectsSelect<T extends boolean = true> {
+  projectsArray?:
+    | T
+    | {
+        projectItem?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "projects-order".
+ * via the `definition` "press-page_select".
  */
-export interface ProjectsOrder {
-  id: string;
-  projectsOrderTitle: string;
-  /**
-   * Select and arrange projects in the order you want them to appear on the page.
-   */
-  projects?: (string | Project)[] | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "landing".
- */
-export interface Landing {
-  id: string;
-  projectsOrderTitle: string;
-  /**
-   * Select and arrange projects in the order you want them to appear on the page.
-   */
-  projects?: (string | Project)[] | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
+export interface PressPageSelect<T extends boolean = true> {
+  pressArray?:
+    | T
+    | {
+        pressItem?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -607,55 +616,6 @@ export interface AboutSelect<T extends boolean = true> {
         aboutSarahZames?: T;
         aboutColinStief?: T;
       };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contact_select".
- */
-export interface ContactSelect<T extends boolean = true> {
-  addressLine1?: T;
-  addressLine2?: T;
-  addressLine3?: T;
-  email?: T;
-  phoneNumber?: T;
-  linkedin?: T;
-  instagram?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "press-page_select".
- */
-export interface PressPageSelect<T extends boolean = true> {
-  pageTitle?: T;
-  pressArticles?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "projects-order_select".
- */
-export interface ProjectsOrderSelect<T extends boolean = true> {
-  projectsOrderTitle?: T;
-  projects?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "landing_select".
- */
-export interface LandingSelect<T extends boolean = true> {
-  projectsOrderTitle?: T;
-  projects?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

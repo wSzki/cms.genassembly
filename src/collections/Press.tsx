@@ -3,6 +3,10 @@ import { CollectionConfig } from 'payload';
 
 const Press: CollectionConfig = {
   slug: 'press',
+  labels : {
+    singular: 'Press Article',
+    plural: 'Press Articles',
+  },
   admin: {
     useAsTitle: 'mainText',
     defaultColumns: ['mainText', 'subtext', 'url', 'createdAt'],
