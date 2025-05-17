@@ -9,15 +9,15 @@ import './styles.css'
 import { redirect } from 'next/navigation'
 
 export default async function HomePage() {
-  const headers = await getHeaders()
-  const payloadConfig = await config
-  const payload = await getPayload({ config: payloadConfig })
-  const { user } = await payload.auth({ headers })
-
-  const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
-  // next.js auto redirect to /admin 
   redirect("/admin")
   return <></>
+  // const headers = await getHeaders()
+  // const payloadConfig = await config
+  // const payload = await getPayload({ config: payloadConfig })
+  // const { user } = await payload.auth({ headers })
+
+  // const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
+  // next.js auto redirect to /admin 
 
   
 
