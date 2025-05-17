@@ -468,7 +468,7 @@ export interface About {
       [k: string]: unknown;
     } | null;
   };
-  aboutSsaragAndColin: {
+  aboutSarahAndColin: {
     image: string | Media;
     aboutSarahZames?: {
       root: {
@@ -570,7 +570,7 @@ export interface AboutSelect<T extends boolean = true> {
         image?: T;
         aboutGeneralAssembly?: T;
       };
-  aboutSsaragAndColin?:
+  aboutSarahAndColin?:
     | T
     | {
         image?: T;

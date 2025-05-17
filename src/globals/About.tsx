@@ -53,7 +53,7 @@ const AboutGlobal: GlobalConfig = {
             },
             {
                 type : 'group',
-                name : 'aboutSsaragAndColin',
+                name : 'aboutSarahAndColin',
                 fields : [
                     {
                         name: 'image',
