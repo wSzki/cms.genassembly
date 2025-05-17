@@ -35,32 +35,43 @@ const AboutGlobal: GlobalConfig = {
             //     ]
             // },
             {
-                name: 'imageA',
-                type: 'upload',
-                relationTo: 'media',
-                required: true,
+                type : 'group',
+                name : 'aboutGeneralAssembly',
+                fields : [
+                    {
+                        name: 'image',
+                        type: 'upload',
+                        relationTo: 'media',
+                        required: true,
+                    },
+                    {
+                        name: 'aboutGeneralAssembly',
+                        type: 'richText',
+                        label: 'About General Assembly',
+                    },
+                ]
             },
             {
-                name: 'aboutGeneralAssembly',
-                type: 'richText',
-                label: 'About General Assembly',
-            },
-            {
-                name: 'imageB',
-                type: 'upload',
-                relationTo: 'media',
-                required: true,
-            },
-
-            {
-                name :'aboutColinStief',
-                type: 'richText',
-                label: 'About Colin Stief',
-            },
-            {
-                name :'aboutSarahZames',
-                type: 'richText',
-                label: 'About Sarah Zames',
+                type : 'group',
+                name : 'aboutColinAndSarah',
+                fields : [
+                    {
+                        name: 'image',
+                        type: 'upload',
+                        relationTo: 'media',
+                        required: true,
+                    },
+                    {
+                        name: 'aboutColinStief',
+                        type: 'richText',
+                        label: 'About Colin Stief',
+                    },
+                    {
+                        name :'aboutSarahZames',
+                        type: 'richText',
+                        label: 'About Sarah Zames',
+                    },
+                ],
             },
         ],
 };
