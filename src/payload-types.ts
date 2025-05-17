@@ -450,18 +450,53 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface About {
   id: string;
-  title: string;
-  pageImages?:
-    | {
-        image: string | Media;
-        altText?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  generalAssemblyDescription?: string | null;
-  assemblyLineDescription?: string | null;
-  sarahZamesDescription?: string | null;
-  colinStiefsDescription?: string | null;
+  imageA: string | Media;
+  aboutGeneralAssembly?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  imageB: string | Media;
+  aboutColinStief?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  aboutSarahZames?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -525,18 +560,11 @@ export interface Landing {
  * via the `definition` "about_select".
  */
 export interface AboutSelect<T extends boolean = true> {
-  title?: T;
-  pageImages?:
-    | T
-    | {
-        image?: T;
-        altText?: T;
-        id?: T;
-      };
-  generalAssemblyDescription?: T;
-  assemblyLineDescription?: T;
-  sarahZamesDescription?: T;
-  colinStiefsDescription?: T;
+  imageA?: T;
+  aboutGeneralAssembly?: T;
+  imageB?: T;
+  aboutColinStief?: T;
+  aboutSarahZames?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

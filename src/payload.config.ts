@@ -58,7 +58,7 @@ export default buildConfig({
     collections: [Users, Media, FeaturedIn, Press, Projects],
     globals: [AboutPage, Contact, PressPageGlobal, ProjectsPage, Landing],
 
-    editor: lexicalEditor(),
+    editor: lexicalEditor({features:[]}),
     secret: process.env.PAYLOAD_SECRET || '',
     typescript: {
         outputFile: path.resolve(dirname, 'payload-types.ts'),
