@@ -134,29 +134,10 @@ export interface UserAuthOperations {
 export interface Project {
   id: string;
   projectTitle: string;
-  projectSubtitle?: string | null;
-  projectLocation?: string | null;
-  projectDate?: string | null;
-  scopeOfWork?:
-    | {
-        item?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  credits?:
-    | {
-        item?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  featured?: (string | Media)[] | null;
-  featuredIn?:
-    | {
-        item?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  description?: {
+  projectSubtitle: string;
+  projectLocation: string;
+  projectDate: string;
+  description: {
     root: {
       type: string;
       children: {
@@ -170,13 +151,30 @@ export interface Project {
       version: number;
     };
     [k: string]: unknown;
-  } | null;
-  desktopMainImage?: (string | null) | Media;
-  mobileMainImage?: (string | null) | Media;
-  images?:
+  };
+  desktopMainImage: string | Media;
+  mobileMainImage: string | Media;
+  images: {
+    image: string | Media;
+    id?: string | null;
+  }[];
+  scopeOfWork?:
     | {
-        image: string | Media;
-        alt?: string | null;
+        item: string;
+        id?: string | null;
+      }[]
+    | null;
+  credits?:
+    | {
+        type: string;
+        name: string;
+        id?: string | null;
+      }[]
+    | null;
+  featuredIn?:
+    | {
+        name: string;
+        url: string;
         id?: string | null;
       }[]
     | null;
@@ -189,7 +187,6 @@ export interface Project {
  */
 export interface Media {
   id: string;
-  alt?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -306,6 +303,15 @@ export interface ProjectsSelect<T extends boolean = true> {
   projectSubtitle?: T;
   projectLocation?: T;
   projectDate?: T;
+  description?: T;
+  desktopMainImage?: T;
+  mobileMainImage?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
   scopeOfWork?:
     | T
     | {
@@ -315,24 +321,15 @@ export interface ProjectsSelect<T extends boolean = true> {
   credits?:
     | T
     | {
-        item?: T;
+        type?: T;
+        name?: T;
         id?: T;
       };
-  featured?: T;
   featuredIn?:
     | T
     | {
-        item?: T;
-        id?: T;
-      };
-  description?: T;
-  desktopMainImage?: T;
-  mobileMainImage?: T;
-  images?:
-    | T
-    | {
-        image?: T;
-        alt?: T;
+        name?: T;
+        url?: T;
         id?: T;
       };
   updatedAt?: T;
@@ -355,7 +352,6 @@ export interface PressSelect<T extends boolean = true> {
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
-  alt?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;

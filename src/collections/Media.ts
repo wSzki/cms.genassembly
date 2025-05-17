@@ -10,11 +10,11 @@ export const Media: CollectionConfig = {
     read: () => true,
   },
   fields: [
-    {
-      name: 'alt',
-      type: 'text',
-      // required: true,
-    },
+    // {
+    //   name: 'alt',
+    //   type: 'text',
+    //   // required: true,
+    // },
   ],
   upload: true,
 }
