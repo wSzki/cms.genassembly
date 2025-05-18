@@ -56,12 +56,7 @@ export default buildConfig({
             },
         },
     },
-    collections: [
-        Projects,
-        Press,
-        Media,
-        Users,
-    ],
+    collections: [Projects, Press, Media, Users],
     globals: [
         Landing,
         AllProjects,
@@ -70,7 +65,7 @@ export default buildConfig({
         AboutPage,
     ],
 
-    editor: lexicalEditor({features:[]}),
+    editor: lexicalEditor({ features: [] }),
     secret: process.env.PAYLOAD_SECRET || '',
     typescript: {
         outputFile: path.resolve(dirname, 'payload-types.ts'),
@@ -83,14 +78,19 @@ export default buildConfig({
         payloadCloudPlugin(),
         s3Storage({
             collections: {
-                media: true,
+                media: {
+                    generateFileURL: ({ filename }) =>
+                        `${process.env.S3_PUBLIC_ENDPOINT || ""}/${filename}`,
+                },
             },
             bucket: process.env.S3_BUCKET || '',
+
             config: {
                 credentials: {
                     accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
                     secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
                 },
+                forcePathStyle: false,
                 region: process.env.S3_REGION || '',
                 endpoint: process.env.S3_ENDPOINT || '',
             },
