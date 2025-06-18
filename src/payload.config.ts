@@ -70,8 +70,18 @@ export default buildConfig({
     typescript: {
         outputFile: path.resolve(dirname, 'payload-types.ts'),
     },
+    // db: mongooseAdapter({
+    //     url: process.env.DATABASE_URI || '',
+    // }),
     db: mongooseAdapter({
         url: process.env.DATABASE_URI || '',
+        connectOptions: {
+            maxPoolSize: 10,
+            minPoolSize: 2,
+            serverSelectionTimeoutMS: 5000,
+            socketTimeoutMS: 45000,
+            maxIdleTimeMS: 10000,
+        },
     }),
     sharp,
     plugins: [
@@ -80,7 +90,7 @@ export default buildConfig({
             collections: {
                 media: {
                     generateFileURL: ({ filename }) =>
-                        `${process.env.S3_PUBLIC_ENDPOINT || ""}/${filename}`,
+                        `${process.env.S3_PUBLIC_ENDPOINT || ''}/${filename}`,
                 },
             },
             bucket: process.env.S3_BUCKET || '',
