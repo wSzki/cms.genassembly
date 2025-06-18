@@ -1,5 +1,6 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
@@ -70,31 +71,36 @@ export default buildConfig({
     typescript: {
         outputFile: path.resolve(dirname, 'payload-types.ts'),
     },
-    db: mongooseAdapter({
-        url: process.env.DATABASE_URI || '',
-    }),
+    // db: mongooseAdapter({
+    //     url: process.env.DATABASE_URI || '',
+    // }),
+  db: sqliteAdapter({
+    client: {
+      url: process.env.DATABASE_URI || '',
+    },
+  }),
     sharp,
     plugins: [
         payloadCloudPlugin(),
-        s3Storage({
-            collections: {
-                media: {
-                    generateFileURL: ({ filename }) =>
-                        `${process.env.S3_PUBLIC_ENDPOINT || ""}/${filename}`,
-                },
-            },
-            bucket: process.env.S3_BUCKET || '',
-
-            config: {
-                credentials: {
-                    accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
-                    secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
-                },
-                forcePathStyle: false,
-                region: process.env.S3_REGION || '',
-                endpoint: process.env.S3_ENDPOINT || '',
-            },
-        }),
+        // s3Storage({
+        //     collections: {
+        //         media: {
+        //             generateFileURL: ({ filename }) =>
+        //                 `${process.env.S3_PUBLIC_ENDPOINT || ""}/${filename}`,
+        //         },
+        //     },
+        //     bucket: process.env.S3_BUCKET || '',
+        //
+        //     config: {
+        //         credentials: {
+        //             accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
+        //             secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
+        //         },
+        //         forcePathStyle: false,
+        //         region: process.env.S3_REGION || '',
+        //         endpoint: process.env.S3_ENDPOINT || '',
+        //     },
+        // }),
         // storage-adapter-placeholder
     ],
 })

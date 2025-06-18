@@ -86,7 +86,7 @@ export interface Config {
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
   globals: {
     highlightedProjects: HighlightedProject;
@@ -132,7 +132,7 @@ export interface UserAuthOperations {
  * via the `definition` "projects".
  */
 export interface Project {
-  id: string;
+  id: number;
   projectTitle: string;
   projectSubtitle: string;
   projectLocation: string;
@@ -152,10 +152,10 @@ export interface Project {
     };
     [k: string]: unknown;
   };
-  desktopMainImage: string | Media;
-  mobileMainImage: string | Media;
+  desktopMainImage: number | Media;
+  mobileMainImage: number | Media;
   images: {
-    image: string | Media;
+    image: number | Media;
     id?: string | null;
   }[];
   scopeOfWork?:
@@ -186,7 +186,7 @@ export interface Project {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -207,6 +207,54 @@ export interface Media {
       filesize?: number | null;
       filename?: string | null;
     };
+    card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    tablet?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    desktop80?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    desktop90?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    full80?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    full90?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
   };
 }
 /**
@@ -214,8 +262,8 @@ export interface Media {
  * via the `definition` "press".
  */
 export interface Press {
-  id: string;
-  image?: (string | null) | Media;
+  id: number;
+  image?: (number | null) | Media;
   mainText?: string | null;
   subtext?: string | null;
   url?: string | null;
@@ -227,7 +275,7 @@ export interface Press {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -244,28 +292,28 @@ export interface User {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string;
+  id: number;
   document?:
     | ({
         relationTo: 'projects';
-        value: string | Project;
+        value: number | Project;
       } | null)
     | ({
         relationTo: 'press';
-        value: string | Press;
+        value: number | Press;
       } | null)
     | ({
         relationTo: 'media';
-        value: string | Media;
+        value: number | Media;
       } | null)
     | ({
         relationTo: 'users';
-        value: string | User;
+        value: number | User;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -275,10 +323,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -298,7 +346,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -386,6 +434,66 @@ export interface MediaSelect<T extends boolean = true> {
               filesize?: T;
               filename?: T;
             };
+        card?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        tablet?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        desktop80?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        desktop90?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        full80?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        full90?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
       };
 }
 /**
@@ -440,12 +548,12 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  * via the `definition` "highlightedProjects".
  */
 export interface HighlightedProject {
-  id: string;
+  id: number;
   /**
    * Select and arrange highlighted projects in the order you want them to appear on the landing page.
    */
   projectsArray: {
-    projectItem?: (string | null) | Project;
+    projectItem?: (number | null) | Project;
     id?: string | null;
   }[];
   updatedAt?: string | null;
@@ -456,12 +564,12 @@ export interface HighlightedProject {
  * via the `definition` "allProjects".
  */
 export interface AllProject {
-  id: string;
+  id: number;
   /**
    * Select and arrange projects in the order you want them to appear on the website.
    */
   projectsArray: {
-    projectItem?: (string | null) | Project;
+    projectItem?: (number | null) | Project;
     id?: string | null;
   }[];
   updatedAt?: string | null;
@@ -472,12 +580,12 @@ export interface AllProject {
  * via the `definition` "press-page".
  */
 export interface PressPage {
-  id: string;
+  id: number;
   /**
    * Select and arrange press articles in the order you want them to appear on the press page.
    */
   pressArray: {
-    pressItem?: (string | null) | Press;
+    pressItem?: (number | null) | Press;
     id?: string | null;
   }[];
   updatedAt?: string | null;
@@ -488,7 +596,7 @@ export interface PressPage {
  * via the `definition` "about".
  */
 export interface About {
-  id: string;
+  id: number;
   contactInformation?: {
     address?: {
       root: {
@@ -511,7 +619,7 @@ export interface About {
     instagram?: string | null;
   };
   aboutGeneralAssembly: {
-    image: string | Media;
+    image: number | Media;
     aboutGeneralAssembly?: {
       root: {
         type: string;
@@ -529,7 +637,7 @@ export interface About {
     } | null;
   };
   aboutSarahAndColin: {
-    image: string | Media;
+    image: number | Media;
     aboutSarahZames?: {
       root: {
         type: string;
