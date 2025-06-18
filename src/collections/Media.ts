@@ -17,11 +17,12 @@ export const Media: CollectionConfig = {
         // },
     ],
     upload: {
+
         staticDir: 'media',
         formatOptions: {
             format: 'webp',
             options: {
-                quality: 80,
+                quality: 100,
             },
         },
         imageSizes: [
@@ -37,32 +38,81 @@ export const Media: CollectionConfig = {
                     },
                 },
             },
-            // {
-            //     name: 'card',
-            //     width: 768,
-            //     height: undefined,
-            //     position: 'centre',
-            // },
-            // {
-            //     name: 'tablet',
-            //     width: 1024,
-            //     height: undefined,
-            //     position: 'centre',
-            // },
-            // {
-            //     name: 'desktop',
-            //     width: 1280,
-            //     height: undefined,
-            //     position: 'centre',
-            // },
-            // {
-            //     name: 'full',
-            //     width: 2048,
-            //     height: undefined,
-            //     position: 'centre',
-            // },
+            {
+                name: 'card',
+                withoutEnlargement: false,
+                width: 768,
+                position: 'centre',
+                formatOptions: {
+                    format: 'webp',
+                    options: {
+                        quality: 80,
+                    },
+                },
+            },
+            {
+                name: 'tablet',
+                width: 1024,
+                withoutEnlargement: false,
+                position: 'centre',
+                formatOptions: {
+                    format: 'webp',
+                    options: {
+                        quality: 80,
+                    },
+                },
+            },
+            {
+                name: 'desktop80',
+                width: 1280,
+                withoutEnlargement: false,
+                position: 'centre',
+                formatOptions: {
+                    format: 'webp',
+                    options: {
+                        quality: 80,
+                    },
+                },
+            },
+            {
+                name: 'desktop90',
+                width: 1281,
+                withoutEnlargement: false,
+                position: 'centre',
+                formatOptions: {
+                    format: 'webp',
+                    options: {
+                        quality: 90,
+                    },
+                },
+            },
+            {
+                name: 'full80',
+                width: 2048,
+                withoutEnlargement: false,
+                position: 'centre',
+                formatOptions: {
+                    format: 'webp',
+                    options: {
+                        quality: 80,
+                    },
+                },
+            },
+            {
+                name: 'full90',
+                width: 2049,
+                withoutEnlargement: false,
+                position: 'centre',
+                formatOptions: {
+                    format: 'webp',
+                    options: {
+                        quality: 90,
+                    },
+                },
+            },
         ],
         adminThumbnail: 'thumbnail',
         mimeTypes: ['image/*'],
     },
 }
+
