@@ -65,7 +65,7 @@ const Project: CollectionConfig = {
                 label: 'Images',
                 required: true,
                 admin : {
-                    initCollapsed:false,
+                    initCollapsed:true,
                 },
                 fields: [
                     {
@@ -81,7 +81,7 @@ const Project: CollectionConfig = {
                 type: 'array',
                 label: 'Scope of work',
                 admin: {
-                    initCollapsed:false,
+                    initCollapsed:true,
                     components: {
                         RowLabel: './components/RowLabelScope.tsx'
                     },
@@ -105,7 +105,7 @@ const Project: CollectionConfig = {
                     ]}
                 ],
                 admin : {
-                    initCollapsed:false,
+                    initCollapsed:true,
                     components: {
                         RowLabel: './components/RowLabelScope.tsx'
                     },
@@ -119,7 +119,7 @@ const Project: CollectionConfig = {
                     {required:true, name: "url", type: "text", label : "URL"},
                 ],
                 admin : {
-                    initCollapsed:false,
+                    initCollapsed:true,
                     components: {
                         RowLabel: './components/RowLabelScope.tsx'
                     },
