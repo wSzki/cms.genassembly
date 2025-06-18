@@ -2,9 +2,9 @@ name: Build Application
 
 on:
   push:
-    branches: [ main ]
+    branches: [ sqlite ]
   pull_request:
-    branches: [ main ]
+    branches: [ sqlite ]
 
 jobs:
   build:
