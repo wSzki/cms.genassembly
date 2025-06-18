@@ -5,41 +5,41 @@ services:
     image: node:lts-bookworm-slim
     ports:
       - '3334:3000'
-    # volumes:
+    volumes:
       - .:/app
-    #   # - ./node_modules:/home/node/app/node_modules
-    #   # - ./media:/home/node/app/media
-    #   # - ./genassembly.db:/home/node/app/genassembly.db
-    working_dir: /app
+      #   # - ./node_modules:/home/node/app/node_modules
+      #   # - ./media:/home/node/app/media
+      #   # - ./genassembly.db:/home/node/app/genassembly.db
+    working_dir: /app/
     command: bash -c "pwd && ls -la && apt update && apt install -y sqlite3 libsqlite3-dev  && npm install -g pnpm && export SHELL=bash && pnpm setup && source /root/.bashrc && rm -rf node_modules && pnpm install && pnpm install @libsql/client && pnpm run build && pnpm run start"
     # depends_on:
     #   - mongo
-      # - postgres
+    # - postgres
     env_file:
       - .env
 
-  # Ensure your DATABASE_URI uses 'mongo' as the hostname ie. mongodb://mongo/my-db-name
-  # mongo:
-  #   image: mongo:latest
-  #   ports:
-  #     - '27017:27017'
-  #   command:
-  #     - --storageEngine=wiredTiger
-  #   volumes:
-  #     - data:/data/db
-  #   logging:
-  #     driver: none
+      # Ensure your DATABASE_URI uses 'mongo' as the hostname ie. mongodb://mongo/my-db-name
+      # mongo:
+      #   image: mongo:latest
+      #   ports:
+      #     - '27017:27017'
+      #   command:
+      #     - --storageEngine=wiredTiger
+      #   volumes:
+      #     - data:/data/db
+      #   logging:
+      #     driver: none
 
-  # Uncomment the following to use postgres
-  # postgres:
-  #   restart: always
-  #   image: postgres:latest
-  #   volumes:
-  #     - pgdata:/var/lib/postgresql/data
-  #   ports:
-  #     - "5432:5432"
+      # Uncomment the following to use postgres
+      # postgres:
+      #   restart: always
+      #   image: postgres:latest
+      #   volumes:
+      #     - pgdata:/var/lib/postgresql/data
+      #   ports:
+      #     - "5432:5432"
 
-# volumes:
-#   data:
-#   # pgdata:
-#   node_modules:
+      # volumes:
+      #   data:
+      #   # pgdata:
+      #   node_modules:
