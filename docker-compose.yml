@@ -3,8 +3,8 @@ version: '3'
 services:
   payload:
     image: node:lts-bookworm-slim
-    ports:
-      - '3334:3000'
+    # ports:
+    #   - '3334:3000'
     volumes:
       - type: bind
         source: .
