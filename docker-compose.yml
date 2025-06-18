@@ -12,8 +12,8 @@ services:
       - ./genassembly.db:/home/node/app/genassembly.db
     working_dir: /home/node/app/
     command: sh -c "corepack enable && corepack prepare pnpm@latest --activate && pnpm install && pnpm dev"
-    depends_on:
-      - mongo
+    # depends_on:
+    #   - mongo
       # - postgres
     env_file:
       - .env
