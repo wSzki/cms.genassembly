@@ -10,7 +10,8 @@ const RowLabelScope = () => {
 
   const customLabel = `${data.title || data.item|| data.name || ""}`
   const customSubLabel = `${data.type ? `- ${data.type}`:""}`
-  const index = `${String(rowNumber || 0 + 1).padStart(2, '0')}`
+
+  const index = `${String(rowNumber ? rowNumber + 1 : 1).padStart(2, '0')}`
 
   return <div><i>{index} /</i>  {customLabel} {customSubLabel}</div>
 }
