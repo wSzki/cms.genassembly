@@ -2,7 +2,7 @@ version: '3'
 
 services:
   payload:
-    image: node:18-alpine
+    image: node:lts-bookworm-slim
     ports:
       - '3334:3000'
     volumes:
@@ -11,7 +11,7 @@ services:
       - ./media:/home/node/app/media 
       - ./genassembly.db:/home/node/app/genassembly.db
     working_dir: /home/node/app/
-    command: sh -c "apk add pnpm && pnpm install && pnpm run build && pnpm run start"
+    command: bash -c "apt update && apt install -y sqlite3 libsqlite3-dev  && npm install -g pnpm && export SHELL=bash && pnpm setup && source /root/.bashrc && rm -rf node_modules && pnpm install && pnpm install @libsql/client && pnpm run build && pnpm run start"
     # depends_on:
     #   - mongo
       # - postgres
