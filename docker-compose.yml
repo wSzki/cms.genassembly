@@ -11,7 +11,7 @@ services:
       # - ./media:/home/node/app/media 
       # - ./genassembly.db:/home/node/app/genassembly.db
     working_dir: /home/node/app/
-    command: bash -c "apt update && apt install -y sqlite3 libsqlite3-dev  && npm install -g pnpm && export SHELL=bash && pnpm setup && source /root/.bashrc && rm -rf node_modules && pnpm install && pnpm install @libsql/client && pnpm run build && pnpm run start"
+    command: bash -c "pwd && ls -la && apt update && apt install -y sqlite3 libsqlite3-dev  && npm install -g pnpm && export SHELL=bash && pnpm setup && source /root/.bashrc && rm -rf node_modules && pnpm install && pnpm install @libsql/client && pnpm run build && pnpm run start"
     # depends_on:
     #   - mongo
       # - postgres
