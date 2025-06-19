@@ -25,7 +25,7 @@ const Project: CollectionConfig = {
                 name: 'projectSubtitle',
                 type: 'text',
                 label: 'Project Subtitle',
-                required: true,
+                // required: true,
             },
             {
                 name: 'projectLocation',
