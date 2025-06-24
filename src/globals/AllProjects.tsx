@@ -27,6 +27,7 @@ const ProjectsOrderGlobal: GlobalConfig = {
                         name: 'projectItem',
                         type: 'relationship',
                         label: 'Projects',
+                        required: true,
                         relationTo: 'projects',
                         admin: {
                         }

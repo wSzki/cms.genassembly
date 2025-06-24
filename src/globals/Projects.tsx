@@ -22,6 +22,7 @@ const ProjectsOrderGlobal: GlobalConfig = {
                         name: 'projectItem',
                         type: 'relationship',
                         label: 'Projects',
+                        required: true,
                         relationTo: 'projects',
                         admin: {
                             description: 'Select and arrange projects in the order you want them to appear on the page.'
