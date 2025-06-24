@@ -129,12 +129,13 @@ const Project: CollectionConfig = {
             {
                 type: "array",
                 name: "featured",
+                label: "Featured In",
                 fields: [
                     {
-                        name: 'feature',
+                        name: 'item',
                         type: 'relationship',
-                        label: 'feature',
-                        relationTo: 'featured-in',
+                        label: 'Featured In',
+                        relationTo: 'press',
                         // admin: {
                         //     description: 'Select and arrange projects in the order you want them to appear on the page.'
                         // }
