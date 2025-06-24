@@ -114,6 +114,7 @@ const Project: CollectionConfig = {
             {
                 type: "array",
                 name: "featuredIn",
+                label: "Deprecated - do not use - pending removal",
                 fields: [
                     {required:true, name: "name", type: "text",},
                     {required:true, name: "url", type: "text", label : "URL"},
@@ -123,6 +124,27 @@ const Project: CollectionConfig = {
                     components: {
                         RowLabel: './components/RowLabelScope.tsx'
                     },
+                }
+            },
+            {
+                type: "array",
+                name: "featured",
+                fields: [
+                    {
+                        name: 'feature',
+                        type: 'relationship',
+                        label: 'feature',
+                        relationTo: 'featured-in',
+                        // admin: {
+                        //     description: 'Select and arrange projects in the order you want them to appear on the page.'
+                        // }
+                    },
+                ],
+                admin : {
+                    initCollapsed:true,
+                    // components: {
+                    //     RowLabel: './components/RowLabelScope.tsx'
+                    // },
                 }
             },
         ],

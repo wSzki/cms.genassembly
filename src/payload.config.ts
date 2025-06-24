@@ -57,7 +57,7 @@ export default buildConfig({
             },
         },
     },
-    collections: [Projects, Press, Media, Users],
+    collections: [Projects, Press, Media, Users, FeaturedIn],
     globals: [
         Landing,
         AllProjects,
