@@ -71,7 +71,6 @@ export interface Config {
     press: Press;
     media: Media;
     users: User;
-    'featured-in': FeaturedIn;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -82,7 +81,6 @@ export interface Config {
     press: PressSelect<false> | PressSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
-    'featured-in': FeaturedInSelect<false> | FeaturedInSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -177,6 +175,12 @@ export interface Project {
     | {
         name: string;
         url: string;
+        id?: string | null;
+      }[]
+    | null;
+  featured?:
+    | {
+        item?: (string | null) | Press;
         id?: string | null;
       }[]
     | null;
@@ -291,17 +295,6 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "featured-in".
- */
-export interface FeaturedIn {
-  id: string;
-  text: string;
-  url?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -322,10 +315,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: string | User;
-      } | null)
-    | ({
-        relationTo: 'featured-in';
-        value: string | FeaturedIn;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -405,6 +394,12 @@ export interface ProjectsSelect<T extends boolean = true> {
     | {
         name?: T;
         url?: T;
+        id?: T;
+      };
+  featured?:
+    | T
+    | {
+        item?: T;
         id?: T;
       };
   updatedAt?: T;
@@ -530,16 +525,6 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "featured-in_select".
- */
-export interface FeaturedInSelect<T extends boolean = true> {
-  text?: T;
-  url?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
@@ -596,7 +581,7 @@ export interface AllProject {
    * Select and arrange projects in the order you want them to appear on the website.
    */
   projectsArray: {
-    projectItem?: (string | null) | Project;
+    projectItem: string | Project;
     id?: string | null;
   }[];
   updatedAt?: string | null;
