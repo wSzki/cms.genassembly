@@ -114,7 +114,7 @@ const Project: CollectionConfig = {
             {
                 type: "array",
                 name: "featuredIn",
-                label: "Deprecated - do not use - pending removal",
+                label: "Featured In",
                 fields: [
                     {required:true, name: "name", type: "text",},
                     {required:true, name: "url", type: "text", label : "URL"},
@@ -126,28 +126,28 @@ const Project: CollectionConfig = {
                     },
                 }
             },
-            {
-                type: "array",
-                name: "featured",
-                label: "Featured In",
-                fields: [
-                    {
-                        name: 'item',
-                        type: 'relationship',
-                        label: 'Featured In',
-                        relationTo: 'press',
-                        // admin: {
-                        //     description: 'Select and arrange projects in the order you want them to appear on the page.'
-                        // }
-                    },
-                ],
-                admin : {
-                    initCollapsed:true,
-                    // components: {
-                    //     RowLabel: './components/RowLabelScope.tsx'
-                    // },
-                }
-            },
+            // {
+            //     type: "array",
+            //     name: "featured",
+            //     label: "Featured In",
+            //     fields: [
+            //         {
+            //             name: 'item',
+            //             type: 'relationship',
+            //             label: 'Featured In',
+            //             relationTo: 'press',
+            //             // admin: {
+            //             //     description: 'Select and arrange projects in the order you want them to appear on the page.'
+            //             // }
+            //         },
+            //     ],
+            //     admin : {
+            //         initCollapsed:true,
+            //         // components: {
+            //         //     RowLabel: './components/RowLabelScope.tsx'
+            //         // },
+            //     }
+            // },
         ],
 };
 

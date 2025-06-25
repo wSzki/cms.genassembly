@@ -178,12 +178,6 @@ export interface Project {
         id?: string | null;
       }[]
     | null;
-  featured?:
-    | {
-        item?: (string | null) | Press;
-        id?: string | null;
-      }[]
-    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -394,12 +388,6 @@ export interface ProjectsSelect<T extends boolean = true> {
     | {
         name?: T;
         url?: T;
-        id?: T;
-      };
-  featured?:
-    | T
-    | {
-        item?: T;
         id?: T;
       };
   updatedAt?: T;
