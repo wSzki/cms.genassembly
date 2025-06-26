@@ -50,9 +50,9 @@ export default buildConfig({
         // Add custom graphics components
         components: {
             // beforeLogin: ['/components/Icon'],
+            beforeDashboard: ['/components/Logo'],
             afterDashboard: ['./components/test.tsx'],
             afterNavLinks: ['./components/nav.tsx'],
-            beforeDashboard: ['/components/Logo'],
             graphics: {
                 Logo: '/components/Logo',
                 Icon: '/components/Icon',
