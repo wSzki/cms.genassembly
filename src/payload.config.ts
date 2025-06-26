@@ -51,8 +51,8 @@ export default buildConfig({
         components: {
             // beforeLogin: ['/components/Icon'],
             beforeDashboard: ['/components/Logo'],
-            afterDashboard: ['./components/test.tsx'],
-            afterNavLinks: ['./components/nav.tsx'],
+            afterDashboard: ['/components/test.tsx'],
+            afterNavLinks: ['/components/nav.tsx'],
             graphics: {
                 Logo: '/components/Logo',
                 Icon: '/components/Icon',
