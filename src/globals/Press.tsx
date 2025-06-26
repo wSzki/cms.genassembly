@@ -23,7 +23,13 @@ const PressPageGlobal: GlobalConfig = {
                     plural: 'Press Articles',
                 },
                 required: true,
-                admin:{description: 'Select and arrange press articles in the order you want them to appear on the press page.'},
+                admin:{
+                    description: 'Select and arrange press articles in the order you want them to appear on the press page.',
+                    initCollapsed:true,
+                    components: {
+                        RowLabel: './components/RowLabelFeature.tsx'
+                    },
+                },
                 fields: [
                     {
                         name: 'pressItem',

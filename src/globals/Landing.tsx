@@ -21,7 +21,13 @@ const ProjectsOrderGlobal: GlobalConfig = {
                     plural: 'Projects',
                 },
                 required: true,
-                admin:{description: 'Select and arrange highlighted projects in the order you want them to appear on the landing page.'},
+                admin:{
+                    description: 'Select and arrange highlighted projects in the order you want them to appear on the landing page.',
+                    initCollapsed:true,
+                    components: {
+                        RowLabel: './components/RowLabelProjects.tsx'
+                    },
+                },
                 fields: [
                     {
                         name: 'projectItem',

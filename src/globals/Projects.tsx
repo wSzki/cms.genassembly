@@ -16,7 +16,13 @@ const ProjectsOrderGlobal: GlobalConfig = {
                 name: 'projectsArray',
                 label: "Projects",
                 required: true,
-                admin:{description: 'Select and arrange projects in the order you want them to appear on the page.'},
+                admin: {
+                    description: 'Select and arrange projects in the order you want them to appear on the page.',
+                    initCollapsed:true,
+                    components: {
+                        RowLabel: './components/RowLabelProjects.tsx'
+                    },
+                },
                 fields: [
                     {
                         name: 'projectItem',
