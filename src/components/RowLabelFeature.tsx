@@ -9,7 +9,7 @@ const RowLabelScope = () => {
     const d = useRowLabel<any>()
 
     useEffect(() => {
-        const res = fetch(`/api/press/${d.data.pressItem}?depth=1&draft=false&locale=undefined`)
+        const res = fetch(`/api/press/${d.data.pressItem}?depth=0&draft=false&locale=undefined`)
             .then(res => res.json().then(data => setProjectData(data)))
         .catch(err => console.log(err))
     }, [d.data.pressItem])
