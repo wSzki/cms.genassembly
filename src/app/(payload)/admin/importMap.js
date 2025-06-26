@@ -4,6 +4,8 @@ import { LexicalDiffComponent as LexicalDiffComponent_44fe37237e0ebf4470c9990d8c
 import { default as default_ae9f647afcc0212a58b42fd17e52ff44 } from '../../../components/RowLabelScope.tsx'
 import { default as default_a02a4abfb5c9da17149cbadc8057c129 } from '../../../components/Icon'
 import { default as default_919492c8e60179286a0f183c0a5b652e } from '../../../components/Logo'
+import { default as default_082a5071aae0a73f2ee47ab9e3ef9b20 } from '../../../components/test'
+import { default as default_11c845718bb2bf52c0d76c925dae4c7d } from '../../../components/nav'
 import { S3ClientUploadHandler as S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24 } from '@payloadcms/storage-s3/client'
 
 export const importMap = {
@@ -13,5 +15,7 @@ export const importMap = {
   "./components/RowLabelScope.tsx#default": default_ae9f647afcc0212a58b42fd17e52ff44,
   "/components/Icon#default": default_a02a4abfb5c9da17149cbadc8057c129,
   "/components/Logo#default": default_919492c8e60179286a0f183c0a5b652e,
+  "/components/test#default": default_082a5071aae0a73f2ee47ab9e3ef9b20,
+  "/components/nav#default": default_11c845718bb2bf52c0d76c925dae4c7d,
   "@payloadcms/storage-s3/client#S3ClientUploadHandler": S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24
 }
