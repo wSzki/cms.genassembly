@@ -29,9 +29,6 @@ export default buildConfig({
       cors: '*',
     admin: {
         user: Users.slug,
-        importMap: {
-            baseDir: path.resolve(dirname),
-        },
         meta: {
             titleSuffix: 'General Assembly',
             // icons: [
@@ -57,6 +54,9 @@ export default buildConfig({
                 Logo: '/components/Logo',
                 Icon: '/components/Icon',
             },
+        },
+        importMap: {
+            baseDir: path.resolve(dirname),
         },
     },
     collections: [Projects, Press, Media, Users],
